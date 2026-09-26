@@ -1,0 +1,18 @@
+{
+  "source": "Personalização-roteadores.zip",
+  "capabilities": [
+    {"capability":"application_code","source":"frontend/app.js, frontend/index.html, backend/server.js","outcome":"migrate","status":"verified","next_action":"No action; dashboard, equipment, profiles, ISP settings and GenieACS views were recreated and browser-tested."},
+    {"capability":"schema","source":"postgres/init/001_schema.sql and 002_equipment_acs.sql","outcome":"migrate_to_lovable_cloud","status":"implemented","next_action":"No action; matching secure user-scoped tables already exist."},
+    {"capability":"records","source":"archive","outcome":"migrate_to_lovable_cloud","status":"pending","next_action":"Request a sanitized JSON or CSV export from the running computer installation."},
+    {"capability":"auth_identities","source":"archive","outcome":"replace_with_lovable_auth","status":"implemented","next_action":"No legacy user export detected; verify any existing users if supplied later."},
+    {"capability":"authorization","source":"backend/server.js","outcome":"replace","status":"implemented","next_action":"Keep the current per-user access controls; do not import the unauthenticated API."},
+    {"capability":"uploaded_file_bytes","source":"archive","outcome":"migrate_if_supplied","status":"pending","next_action":"Request evidence files separately if the computer installation contains them."},
+    {"capability":"genieacs","source":"docker-compose.yml and backend/server.js","outcome":"preserve_external_service","status":"blocked","next_action":"Expose GenieACS through a secure public address and provide validated device parameter paths."},
+    {"capability":"public_endpoints","source":"backend/server.js","outcome":"recreate_only_if_needed","status":"pending","next_action":"Recreate secure ACS callbacks and API endpoints when GenieACS connectivity is available."},
+    {"capability":"callbacks_webhooks","source":"archive","outcome":"none_detected","status":"verified","next_action":"None."},
+    {"capability":"schedules","source":"archive","outcome":"none_detected","status":"verified","next_action":"None."},
+    {"capability":"secrets","source":".env excluded from inspection","outcome":"do_not_copy","status":"verified","next_action":"Use secure project secrets only when the retained GenieACS service is connected."},
+    {"capability":"cutover","source":"local Docker installation","outcome":"pending","status":"blocked","next_action":"Keep local system running until data and GenieACS behavior are verified in the new app."},
+    {"capability":"verification","source":"current app and archive comparison","outcome":"partial","status":"pending","next_action":"UI was verified on desktop and mobile with no browser errors; imported records and one real router provisioning flow remain pending."}
+  ]
+}
